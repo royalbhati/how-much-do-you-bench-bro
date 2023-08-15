@@ -5,9 +5,10 @@ function main() {
   console.log(`Current number of CPU cores: ${numCores}`);
 
   const arrayLen = 10;
-  const arrayChildrenLen = 1e8;
-  const coresToBeUsed = 8; // Specify the number of CPUs you want to use
+  const arrayChildrenLen = 1e4;
+  const coresToBeUsed = 8; 
   runWithChannels(arrayLen, arrayChildrenLen, coresToBeUsed);
+
 }
 
 function runWithChannels(arrayLen, arrayChildrenLen, coresToBeUsed) {
@@ -23,6 +24,7 @@ function runWithChannels(arrayLen, arrayChildrenLen, coresToBeUsed) {
       const end = performance.now();
       const duration = end - start;
       console.log(`Execution time: ${duration}ms`);
+      process.exit(0)
     }
   }
 

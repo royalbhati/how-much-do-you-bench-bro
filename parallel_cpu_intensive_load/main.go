@@ -7,9 +7,13 @@ import (
 	"strconv"
 	"sync"
 	"time"
+    "github.com/pkg/profile"
+
 )
 
 func main(){
+
+    defer profile.Start(profile.MemProfileHeap,profile.ProfilePath(".")).Stop()
 	coresToBeUsed := runtime.NumCPU()
 	if len(os.Args) > 1 {
 		coresToBeUsed, _ = strconv.Atoi(os.Args[1])
@@ -19,7 +23,7 @@ func main(){
 	fmt.Printf("Current number of CPU cores: %d\n", numCores)
    
     arrayLen:=10
-    arrayChildrenLen:=1e8
+    arrayChildrenLen:=1e4
     runWithChannels(arrayLen,int(arrayChildrenLen)) 
 }
 
@@ -74,12 +78,12 @@ func writeJob(arr [][]int, index int, wg *sync.WaitGroup) {
 
 
 func writeJobChannel(arr [][]int, index int, notify *chan bool) {
-	// fmt.Println("array ", index, " init")
+    fmt.Println("array ", index, " init")
 	for i := 0; i < len(arr[index]); i++ {
 		arr[index][i] = i
 	}
 	readJob(arr, index)
-    // fmt.Println("array ", index, " done")
+    fmt.Println("array ", index, " done")
     *notify<-true
 }
 func readJob(arr [][]int, index int) {

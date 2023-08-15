@@ -1,0 +1,254 @@
+Statistical profiling result from isolate-0x2a0090000-58860-v8.log, (194 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+      5    2.6%          /usr/lib/system/libsystem_pthread.dylib
+      3    1.5%          /usr/lib/system/libsystem_c.dylib
+      3    1.5%          /usr/lib/libc++.1.dylib
+      2    1.0%          /usr/lib/system/libsystem_kernel.dylib
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      7    3.6%    3.9%  LazyCompile: *readJob /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:3:17
+      5    2.6%    2.8%  LazyCompile: *<anonymous> /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:14:26
+
+ [C++]:
+   ticks  total  nonlib   name
+    132   68.0%   72.9%  T node::builtins::BuiltinLoader::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     23   11.9%   12.7%  t void std::__1::__tree_remove<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      6    3.1%    3.3%  T _semaphore_destroy
+      2    1.0%    1.1%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      2    1.0%    1.1%  T _mach_get_times
+      1    0.5%    0.6%  t _mach_msg_destroy_port
+      1    0.5%    0.6%  T node::binding::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+      1    0.5%    0.6%  T _mach_port_type
+      1    0.5%    0.6%  T __simple_getenv
+
+ [Summary]:
+   ticks  total  nonlib   name
+     12    6.2%    6.6%  JavaScript
+    169   87.1%   93.4%  C++
+      2    1.0%    1.1%  GC
+     13    6.7%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+    132   87.4%   68.0%  T node::builtins::BuiltinLoader::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+     14    9.3%    7.2%  t void std::__1::__tree_remove<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      2    1.3%    1.0%  T _mach_get_times
+      1    0.7%    0.5%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      1    0.7%    0.5%  t _mach_msg_destroy_port
+      1    0.7%    0.5%  T node::binding::GetInternalBinding(v8::FunctionCallbackInfo<v8::Value> const&)
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+    132   68.0%  T node::builtins::BuiltinLoader::CompileFunction(v8::FunctionCallbackInfo<v8::Value> const&)
+    116   87.9%    Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+    116  100.0%      Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+     23   19.8%        Function: ~<anonymous> node:internal/bootstrap/node:1:1
+     11    9.5%        Function: ~<anonymous> node:fs:1:1
+     11  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+     11  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      6    5.2%        Function: ~<anonymous> node:crypto:1:1
+      6  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      6  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      5    4.3%        Function: ~<anonymous> node:internal/webstreams/transformstream:1:1
+      5  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      5  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      5    4.3%        Function: ~<anonymous> node:internal/streams/duplex:1:1
+      5  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      5  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      5    4.3%        Function: ~<anonymous> node:internal/process/execution:1:1
+      5  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      5  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      4    3.4%        LazyCompile: ~setupBuffer node:internal/bootstrap/node:433:21
+      4  100.0%          Function: ~<anonymous> node:internal/bootstrap/node:1:1
+      4    3.4%        Function: ~<anonymous> node:internal/modules/esm/fetch_module:1:1
+      4  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      4  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      3    2.6%        Function: ~<anonymous> node:util:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      3  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      3    2.6%        Function: ~<anonymous> node:internal/process/esm_loader:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      3  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      3    2.6%        Function: ~<anonymous> node:internal/modules/esm/loader:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      3  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      3    2.6%        Function: ~<anonymous> node:internal/abort_controller:1:1
+      3  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      3  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        LazyCompile: ~setupProcessObject node:internal/bootstrap/node:392:28
+      2  100.0%          Function: ~<anonymous> node:internal/bootstrap/node:1:1
+      2    1.7%        LazyCompile: ~initializeCJSLoader node:internal/process/pre_execution:542:29
+      2  100.0%          LazyCompile: ~setupUserModules node:internal/process/pre_execution:113:26
+      2  100.0%            LazyCompile: ~<anonymous> node:internal/main/worker_thread:82:20
+      2    1.7%        Function: ~<anonymous> node:internal/webstreams/readablestream:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/util/parse_args/parse_args:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/streams/readable:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/streams/operators:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/modules/esm/load:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/fs/promises:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/console/global:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      2    1.7%        Function: ~<anonymous> node:internal/blob:1:1
+      2  100.0%          Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      2  100.0%            Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+     16   12.1%    LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:319:27
+     16  100.0%      LazyCompile: ~requireBuiltin node:internal/bootstrap/loaders:356:24
+      7   43.8%        Function: ~<anonymous> node:internal/timers:1:1
+      7  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      7  100.0%            LazyCompile: ~requireBuiltin node:internal/bootstrap/loaders:356:24
+      5   31.3%        LazyCompile: ~setupPrepareStackTrace node:internal/bootstrap/node:373:32
+      5  100.0%          Function: ~<anonymous> node:internal/bootstrap/node:1:1
+      2   12.5%        Function: ~<anonymous> node:internal/bootstrap/node:1:1
+      1    6.3%        Function: ~<anonymous> node:internal/promise_hooks:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%            LazyCompile: ~requireBuiltin node:internal/bootstrap/loaders:356:24
+      1    6.3%        Function: ~<anonymous> node:internal/async_hooks:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%            LazyCompile: ~requireBuiltin node:internal/bootstrap/loaders:356:24
+
+     23   11.9%  t void std::__1::__tree_remove<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      1    4.3%    t void std::__1::__tree_remove<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      1  100.0%      Function: ~<anonymous> node:internal/util/inspect:1:1
+      1  100.0%        LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%          LazyCompile: ~requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%            Function: ~<anonymous> node:internal/timers:1:1
+      1    4.3%    LazyCompile: ~value node:internal/console/constructor:201:20
+      1  100.0%      LazyCompile: ~initializeGlobalConsole node:internal/console/constructor:688:33
+      1  100.0%        LazyCompile: ~patchProcessObject node:internal/process/pre_execution:127:28
+      1  100.0%          LazyCompile: ~prepareExecution node:internal/process/pre_execution:52:26
+      1  100.0%            LazyCompile: ~prepareWorkerThreadExecution node:internal/process/pre_execution:44:38
+      1    4.3%    LazyCompile: ~setupPortReferencing node:internal/worker/io:292:30
+      1  100.0%      LazyCompile: ~oninit node:internal/worker/io:230:16
+      1    4.3%    LazyCompile: ~realpathSync node:fs:2502:22
+      1  100.0%      LazyCompile: ~toRealPath node:internal/modules/cjs/loader:476:20
+      1  100.0%        LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:582:28
+      1  100.0%          LazyCompile: ~resolveMainPath node:internal/modules/run_main:15:25
+      1  100.0%            LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1    4.3%    LazyCompile: ~readPackageScope node:internal/modules/cjs/loader:404:26
+      1  100.0%      LazyCompile: ~shouldUseESMLoader node:internal/modules/run_main:30:28
+      1  100.0%        LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/main/worker_thread:82:20
+      1  100.0%            LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      1    4.3%    LazyCompile: ~readJob /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:3:17
+      1  100.0%      LazyCompile: ~<anonymous> /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:14:26
+      1  100.0%        LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      1  100.0%          LazyCompile: ~exports.emitMessage node:internal/per_context/messageport:19:31
+      1    4.3%    LazyCompile: ~on node:internal/event_target:870:5
+      1  100.0%      Function: ~<anonymous> /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:1:1
+      1  100.0%        LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1208:37
+      1  100.0%          LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1263:37
+      1  100.0%            LazyCompile: ~Module.load node:internal/modules/cjs/loader:1105:33
+      1    4.3%    LazyCompile: ~Module._initPaths node:internal/modules/cjs/loader:1382:29
+      1  100.0%      LazyCompile: ~initializeCJSLoader node:internal/process/pre_execution:542:29
+      1  100.0%        LazyCompile: ~setupUserModules node:internal/process/pre_execution:113:26
+      1  100.0%          LazyCompile: ~<anonymous> node:internal/main/worker_thread:82:20
+      1  100.0%            LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      1    4.3%    LazyCompile: ~<anonymous> node:internal/main/worker_thread:82:20
+      1  100.0%      LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      1  100.0%        LazyCompile: ~exports.emitMessage node:internal/per_context/messageport:19:31
+      1    4.3%    Function: ~<anonymous> node:internal/webstreams/readablestream:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          Function: ~<anonymous> node:internal/webstreams/transformstream:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1    4.3%    Function: ~<anonymous> node:internal/fs/utils:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          Function: ~<anonymous> node:fs:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1    4.3%    Function: ~<anonymous> node:internal/bootstrap/node:1:1
+      1    4.3%    Function: ~<anonymous> node:fs:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          Function: ~<anonymous> node:internal/bootstrap/node:1:1
+
+      7    3.6%  LazyCompile: *readJob /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:3:17
+      7  100.0%    LazyCompile: ~<anonymous> /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:14:26
+      7  100.0%      LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      7  100.0%        LazyCompile: ~exports.emitMessage node:internal/per_context/messageport:19:31
+
+      6    3.1%  T _semaphore_destroy
+
+      5    2.6%  LazyCompile: *<anonymous> /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:14:26
+      5  100.0%    LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      5  100.0%      LazyCompile: ~exports.emitMessage node:internal/per_context/messageport:19:31
+
+      5    2.6%  /usr/lib/system/libsystem_pthread.dylib
+      2   40.0%    LazyCompile: ~setupTaskQueue node:internal/process/task_queues:162:17
+      2  100.0%      Function: ~<anonymous> node:internal/bootstrap/node:1:1
+      1   20.0%    LazyCompile: ~<anonymous> /Users/royal/Documents/personalee/studyNotes/projects/how-much-do-you-bench-bro/concurrency/worker.js:14:26
+      1  100.0%      LazyCompile: ~<anonymous> node:internal/event_target:682:20
+      1  100.0%        LazyCompile: ~exports.emitMessage node:internal/per_context/messageport:19:31
+      1   20.0%    Function: ~<anonymous> node:internal/event_target:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          Function: ~<anonymous> node:internal/abort_controller:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+
+      3    1.5%  /usr/lib/system/libsystem_c.dylib
+      1   33.3%    t void std::__1::__tree_remove<std::__1::__tree_node_base<void*>*>(std::__1::__tree_node_base<void*>*, std::__1::__tree_node_base<void*>*)
+      1  100.0%      LazyCompile: ~E node:internal/errors:421:11
+      1  100.0%        Function: ~<anonymous> node:internal/errors:1:1
+      1  100.0%          LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%            LazyCompile: ~requireBuiltin node:internal/bootstrap/loaders:356:24
+      1   33.3%    LazyCompile: ~readFileSync node:fs:466:22
+      1  100.0%      LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1263:37
+      1  100.0%        LazyCompile: ~Module.load node:internal/modules/cjs/loader:1105:33
+      1  100.0%          LazyCompile: ~Module._load node:internal/modules/cjs/loader:886:24
+      1  100.0%            LazyCompile: ~executeUserEntryPoint node:internal/modules/run_main:74:31
+
+      3    1.5%  /usr/lib/libc++.1.dylib
+      1   33.3%    LazyCompile: ~prepareExecution node:internal/process/pre_execution:52:26
+      1  100.0%      LazyCompile: ~prepareWorkerThreadExecution node:internal/process/pre_execution:44:38
+      1  100.0%        Function: ~<anonymous> node:internal/main/worker_thread:1:1
+      1   33.3%    LazyCompile: ~ReadableWorkerStdio node:internal/worker/io:332:14
+      1  100.0%      LazyCompile: ~createWorkerStdio node:internal/worker/io:398:27
+      1  100.0%        LazyCompile: ~lazyWorkerStdio node:internal/bootstrap/switches/is_not_main_thread:37:25
+      1  100.0%          LazyCompile: ~getStdin node:internal/bootstrap/switches/is_not_main_thread:46:18
+      1  100.0%            LazyCompile: ~<anonymous> node:internal/main/worker_thread:82:20
+      1   33.3%    Function: ~<anonymous> node:buffer:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          LazyCompile: ~setupBuffer node:internal/bootstrap/node:433:21
+      1  100.0%            Function: ~<anonymous> node:internal/bootstrap/node:1:1
+
+      2    1.0%  t std::__1::basic_ostream<char, std::__1::char_traits<char> >& std::__1::__put_character_sequence<char, std::__1::char_traits<char> >(std::__1::basic_ostream<char, std::__1::char_traits<char> >&, char const*, unsigned long)
+      1   50.0%    Function: ~<anonymous> node:internal/crypto/pbkdf2:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          Function: ~<anonymous> node:crypto:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+
+      2    1.0%  T _mach_get_times
+      1   50.0%    Function: ~<anonymous> node:internal/crypto/util:1:1
+      1  100.0%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1  100.0%        Function: ^requireBuiltin node:internal/bootstrap/loaders:356:24
+      1  100.0%          Function: ~<anonymous> node:internal/crypto/pbkdf2:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:319:27
+      1   50.0%    Function: ~<anonymous> node:internal/bootstrap/node:1:1
+
+      2    1.0%  /usr/lib/system/libsystem_kernel.dylib
+      1   50.0%    LazyCompile: ~debug node:internal/util/debuglog:76:15
+      1  100.0%      LazyCompile: ~logger node:internal/util/debuglog:95:18
+      1  100.0%        Function: ~<anonymous> node:internal/main/worker_thread:1:1
+
